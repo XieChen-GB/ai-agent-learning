@@ -1,0 +1,21 @@
+{
+  "title": "Q3 复盘会议",
+  "date": "2025-01-15",
+  "participants": [
+    "Alice",
+    "Bob",
+    "Charlie"
+  ],
+  "action_items": [
+    {
+      "owner": "Alice",
+      "task": "整理报告",
+      "due": "2025-01-20"
+    },
+    {
+      "owner": "Bob",
+      "task": "联系客户",
+      "due": "2025-01-18"
+    }
+  ]
+}
