@@ -1,10 +1,12 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 
+import ollama
+
 app = FastAPI()
 
 class ChatRequest(BaseModel):
-    message: str
+    messages: str
     session_id: str
 
 @app.get("/agent/status")
@@ -16,5 +18,10 @@ def get_info():
     return {"name": "謝晨", "model": "qwen2.5:7b"}
 
 @app.post("/agent/chat")
-def post_char(chartrequest: ChatRequest):
-    return {"reply": f"收到:{chartrequest.message}", "session": chartrequest.session_id} 
+def post_chart(chartrequest: ChatRequest):
+    
+    respones = ollama.chat(model= "qwen2.5:7b",
+                           messages=  [{"role": "user", "content": chartrequest.messages}]
+    )
+
+    return {"reply": respones["message"]["content"]} 
