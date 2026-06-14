@@ -7,8 +7,12 @@ response = ollama.chat(
         {
             "role": "system",
             "content": """
-                你是一个信息提取助手。你的输出必须是且只是一个合法的 JSON 对象，不要有任何其他文字、解释或 markdown 代码块标记。
-                输出格式如下：
+                你是一个信息提取助手。
+                在提取信息之前，请先一步一步分析会议记录：
+                第一步：找出所有已明确决定的事项
+                第二步：找出每个待办任务、负责人和截止时间
+                第三步：根据分析结果，输出且只输出一个合法的 JSON 对象，不要有任何其他文字、解释或 markdown 代码块标记。
+                输出格式如下：    
                 {
                     "summary": "会议内容一句话总结",
                     "decisions": ["决定事项1"],
@@ -17,6 +21,14 @@ response = ollama.chat(
                     ]
                 }    
             """
+        },
+        {
+            "role": "user",
+            "content": "会议记录：总监说下周要完成需求文档，开发团队本月底前完成接口设计。"
+        },
+        {
+            "role": "assistant",
+            "content": """{"summary": "确定了需求文档和接口设计的任务安排。", "decisions": [], "action_items": [{"task": "完成需求文档", "owner": "总监", "deadline": "下周"}, {"task": "完成接口设计", "owner": "开发团队", "deadline": "本月底"}]}"""
         },
         {
             "role": "user",
