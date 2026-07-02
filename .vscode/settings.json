@@ -5,6 +5,10 @@
         {
             "path": "stage3",
             "envManager": "ms-python.python:venv"
+        },
+        {
+            "path": "stage4",
+            "envManager": "ms-python.python:venv"
         }
     ]
 }
